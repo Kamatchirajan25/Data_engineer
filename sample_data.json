@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Sam",
+    "age": 45,
+    "cars": {
+      "car1": {
+        "make": "Honda"
+      },
+      "car2": {
+        "make": "Toyota"
+      },
+      "car3": {
+        "make": "Kia"
+      }
+    }
+  },
+  {
+    "name": "Sally",
+    "age": 21,
+    "cars": {
+      "car1": {
+        "make": "Ford"
+      },
+      "car2": {
+        "make": "SAAB"
+      },
+      "car3": {
+        "make": "Kia"
+      }
+    }
+  },
+  {
+    "name": "Bill",
+    "age": 68,
+    "cars": {
+      "car1": {
+        "make": "Honda"
+      },
+      "car2": {
+        "make": "Porsche"
+      },
+      "car3": {
+        "make": "Kia"
+      }
+    }
+  }
+]
