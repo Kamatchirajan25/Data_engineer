@@ -1,0 +1,35 @@
+==============================
+Query Your JSON Data Using Amazon Athena
+===============================
+
+JSON File available in the below location: "https://lnkd.in/dTmpcYps"
+
+
+STEP 1: Upload the json file in the AWS S3 bucket and copy S3 URI location
+
+In my case S3 location is : s3://kamatchibucket/athena_test/out/
+
+NOTE : Athena doesn't support multi line JSON.so we need to convert into single line JSON file like below
+
+{"name":"Sam","age":45,"cars":{"car1":{"make":"Honda"},"car2":{"make":"Toyota"},"car3":{"make":"Kia"}}}
+{"name":"Sally","age":21,"cars":{"car1":{"make":"Ford"},"car2":{"make":"SAAB"},"car3":{"make":"Kia"}}}
+{"name":"Bill","age":68,"cars":{"car1":{"make":"Honda"},"car2":{"make":"Porsche"},"car3":{"make":"Kia"}}}
+
+
+STEP 2: Go to AWS Athena services and create the external table using the S3 URI location
+
+
+CREATE EXTERNAL TABLE s3_json_table (
+  name string,
+  age string,
+  cars struct <`car1` : struct <`make` : string>,
+         `car2` : struct <`make` : string>,
+         `car3` : struct <`make` : string>>
+)
+ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
+WITH SERDEPROPERTIES ( 'ignore.malformed.json' = 'true')
+LOCATION 's3://kamatchibucket/athena_test/out';
+
+STEP 3: Query the data in AWS athena
+
+select name,age,cars.car1.make from s3_json_table;
